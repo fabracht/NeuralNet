@@ -25,6 +25,8 @@
 /* Begin PBXFileReference section */
 		7FDEDF8722B094D400C56193 /* neuralnet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = neuralnet; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FDEDF8A22B094D400C56193 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		7FDEDF9122B0950300C56193 /* linkedl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = linkedl.h; sourceTree = "<group>"; };
+		7FDEDF9222B0953000C56193 /* neural.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = neural.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				7FDEDF8A22B094D400C56193 /* main.cpp */,
+				7FDEDF9222B0953000C56193 /* neural.h */,
+				7FDEDF9122B0950300C56193 /* linkedl.h */,
 			);
 			path = neuralnet;
 			sourceTree = "<group>";
