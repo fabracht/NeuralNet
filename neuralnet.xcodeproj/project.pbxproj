@@ -26,7 +26,11 @@
 		7FDEDF8722B094D400C56193 /* neuralnet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = neuralnet; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FDEDF8A22B094D400C56193 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7FDEDF9122B0950300C56193 /* linkedl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = linkedl.h; sourceTree = "<group>"; };
-		7FDEDF9222B0953000C56193 /* neural.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = neural.h; sourceTree = "<group>"; };
+		7FDEDF9222B0953000C56193 /* neuralLL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = neuralLL.h; sourceTree = "<group>"; };
+		7FF881CE22C9663F00DDE38B /* neural.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = neural.h; sourceTree = "<group>"; };
+		7FF881CF22CA8CFC00DDE38B /* linearregression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = linearregression.h; sourceTree = "<group>"; };
+		7FF881D022CBE64000DDE38B /* myvector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myvector.h; sourceTree = "<group>"; };
+		7FFC930122D3CC3300A0F3F7 /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +64,11 @@
 			isa = PBXGroup;
 			children = (
 				7FDEDF8A22B094D400C56193 /* main.cpp */,
-				7FDEDF9222B0953000C56193 /* neural.h */,
+				7FFC930122D3CC3300A0F3F7 /* matrix.h */,
+				7FF881D022CBE64000DDE38B /* myvector.h */,
+				7FF881CF22CA8CFC00DDE38B /* linearregression.h */,
+				7FF881CE22C9663F00DDE38B /* neural.h */,
+				7FDEDF9222B0953000C56193 /* neuralLL.h */,
 				7FDEDF9122B0950300C56193 /* linkedl.h */,
 			);
 			path = neuralnet;
@@ -92,6 +100,9 @@
 		7FDEDF7F22B094D400C56193 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Fabricio Bracht";
 				TargetAttributes = {
@@ -245,7 +256,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5P6985MQH2;
+				HEADER_SEARCH_PATHS = /usr/local/include/eigen3/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -254,7 +268,10 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5P6985MQH2;
+				HEADER_SEARCH_PATHS = /usr/local/include/eigen3/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

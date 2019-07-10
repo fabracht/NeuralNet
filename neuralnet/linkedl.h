@@ -34,7 +34,8 @@ public:
     T remove(int);
     void print();
     bool isEmpty();
-    T getnthvalue(int);
+    T getnthvalue(size_t);
+    T operator [](size_t);
 };
 
 // Deleting each ll
@@ -139,7 +140,7 @@ bool linkedl<T>::isEmpty() {
 }
 
 template<typename T>
-T linkedl<T>::getnthvalue(int position) {
+T linkedl<T>::getnthvalue(size_t position) {
     if (!head) {
         perror("List is empty\n");
         exit(EXIT_FAILURE);
@@ -156,4 +157,11 @@ T linkedl<T>::getnthvalue(int position) {
     }
     return lead->value;
 }
+
+template<typename T>
+T linkedl<T>::operator [](size_t index) {
+    return getnthvalue(index);
+}
+
+
 #endif /* linkedl_h */

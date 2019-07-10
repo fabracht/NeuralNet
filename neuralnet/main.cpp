@@ -6,22 +6,39 @@
 //  Copyright © 2019 Fabricio Bracht. All rights reserved.
 //
 
+//#include <ctime>
+//#include <cmath>
+//#include "linkedl.h"
+//#include "neural.h"
+//#include "dynarray.h"
+//#include "neuraldyn.h"
+//#include "linearregression.h"
+#include "myvector.h"
+//#include <Eigen/Dense>
 #include <iostream>
-#include <ctime>
+#include "matrix.h"
 #include "neural.h"
-#include "linkedl.h"
+
 
 using namespace std;
+//using namespace Eigen;
+
+
 
 int main(int argc, const char * argv[]) {
-    double A[] = {1.1, 2.2, 3.3};
-    linkedl<double> ll(A, 3);
-    ll.print();
-    double second = ll.getnthvalue(1);
-    cout << "The second value is " << second << endl;
-    
-    neuralNetwork<double> nn;
+    Neural n;
+    Matrix<double> wih(n.inodes, n.hnodes);
+    Matrix<double> who(n.hnodes, n.onodes);
+    wih.rand(-0.5, 0.5);
+    who.rand(-0.5, 0.5);
 
+    Matrix<double> inputs(n.hnodes);
+    inputs.rand(0.1, 0.3);
+    
+    Matrix<double> hidden_inputs(wih.rows(), inputs.cols());
+    Matrix<double> final_outputs(wih.rows(), inputs.cols());
+    final_outputs = n.query(inputs, wih, who);
+    final_outputs.print();
     
     return 0;
 }

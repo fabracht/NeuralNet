@@ -1,74 +1,60 @@
 //
 //  neuralclass.h
-//  neuralnetwork1
+//  neuralnet
 //
-//  Created by Fabricio Bracht on 2019-06-10.
+//  Created by Fabricio Bracht on 2019-06-30.
 //  Copyright © 2019 Fabricio Bracht. All rights reserved.
 //
 
-#ifndef neural_h
-#define neural_h
-#include <iostream>
-#include <cmath>
-#include <random>
-#include "linkedl.h"
+#ifndef neuralclass_h
+#define neuralclass_h
 
-using namespace std;
-
-// Generate a random number between -1 and 1
-double generateRandomNum() {
-    random_device r;
-    default_random_engine el(r());
-    uniform_real_distribution<double> uniform_dist(-1.0, 1.0);
-    double num = uniform_dist(el);
-
-    return num;
-}
-
-template<typename T>
-class neuralNetwork : public linkedl<T>{
-private:
-    int inputnodes, hiddennodes, outputnodes; // size of the network
-    T learningrate; // self-explanatory
-    linkedl<T> **coefMatrix; // coeficient matrix
-public:
-    // Initialize the neural network
-    neuralNetwork();
-    neuralNetwork(int _inputnodes, int _hiddennodes, int _outputnodes, T _learningrate);
-    neuralNetwork(const neuralNetwork&); // copy constructor
-    ~neuralNetwork(); // default destructor
-    // Train the neural network
-    void train() {};
-    // Query the neural network
-    void query() {};
+struct Neural {
+    size_t inodes;
+    size_t hnodes;
+    size_t onodes;
+    double learningrate;
+    
+    Neural() {
+        inodes = 3;
+        hnodes = 3;
+        onodes = 3;
+        learningrate = 0.3;
+    }
+    
+    void activation(Matrix<double>& ref, Matrix<double>& dest) {
+        int i, j;
+        for (i = 0; i < ref.rows(); ++i) {
+            for (j = 0; j < ref.cols(); ++j) {
+                dest[i][j] = 1/(1+exp(-(ref[i][j]))); }
+        }
+    }
+    
+    void train() {
+        
+    }
+    
+    Matrix<double> query(Matrix<double>& inputs, Matrix<double>& wih, Matrix<double>& who) {
+        Matrix<double> hidden_inputs(wih.cols(), inputs.rows());
+        Matrix<double> hidden_outputs(wih.cols(), inputs.rows());
+        Matrix<double> final_inputs(wih.cols(), inputs.rows());
+        Matrix<double> final_outputs(wih.cols(), inputs.rows());
+        
+        // Calculates signals into the hidden layer
+        hidden_inputs = wih * inputs;
+        
+        // Calculate signals emerging from hidden layer
+        activation(hidden_inputs, hidden_outputs);
+        
+        // Calculate signals into final output layer
+        final_inputs = who * hidden_outputs;
+        
+        // Calculate signals emerging from final output layer
+        activation(final_inputs, final_outputs);
+        
+        return final_outputs;
+        
+    }
 };
-
-template<typename T>
-neuralNetwork<T>::neuralNetwork() {
-    inputnodes = hiddennodes = outputnodes = 3;
-    learningrate = 0.3;
-    coefMatrix = new linkedl<T>*[3];
-    for (int i = 0; i < 3; ++i) {
-        coefMatrix[i%3] = new linkedl<T>;
-    }
-    for(int i = 0; i < 9; ++i) {
-        coefMatrix[i%3]->add(generateRandomNum());
-    }
-}
-
-template<typename T>
-neuralNetwork<T>::neuralNetwork(int _inputnodes, int _hiddennodes, int _outputnodes, T _learningrate) {
-    inputnodes(_inputnodes);
-    hiddennodes(_hiddennodes);
-    outputnodes(_outputnodes);
-    int dimension = max(inputnodes, max(hiddennodes, outputnodes));
-    coefMatrix = new linkedl<T>*[dimension];
-}
-
-template<typename T>
-neuralNetwork<T>::~neuralNetwork() {
-    delete[] coefMatrix;
-    cout << "Neural destroyed" << endl;
-}
 
 #endif /* neuralclass_h */
